@@ -6,6 +6,8 @@ qplotspc(aggregate(a1, a1$explosive, mean), mapping = aes(x =.wavelength, y = sp
   scale_x_reverse()+scale_colour_manual(values=cols01)+
   guides(colour=guide_legend(title="Explosive"))+
   labs(x=expression(bold(paste ("Wavenumber", " [",cm ^-1, "]"))), y = "Absorbance [a.u.]" )
+#save plot to pdf
+
 
 #with panels
 qplotspc(aggregate(a1, a1$explosive, mean), mapping = aes(x =.wavelength, y = spc, colour= explosive))+
