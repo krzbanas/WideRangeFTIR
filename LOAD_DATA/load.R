@@ -26,3 +26,6 @@ d1 = data.frame(files, explosive)
 #create hyperSpec object
 a1= new ("hyperSpec", wavelength = wavenumber, spc = spc, data=d1)
 a1
+
+#add
+#something
