@@ -46,3 +46,25 @@ ggsave("FIGURES/PAM_SP_01.pdf", sp, width = 14, height = 8)
 #save plot to png
 ggsave("FIGURES/PAM_SP_01.png", sp, width = 14, height = 8)
 
+
+
+#Alternative version of PAM cluster plots
+#result is the same
+
+#p1a<-fviz_cluster(pam2_NIR, geom = "point", pointsize=2, ellipse.type = "confidence", main="NIR")+
+#scale_colour_manual(values=cols01)
+#p2a<-fviz_cluster(pam2_MIR, geom = "point", pointsize=2, ellipse.type = "confidence", main="MIR")+
+#scale_colour_manual(values=cols01)
+#p3a<-fviz_cluster(pam2_FIR, geom = "point", pointsize=2, ellipse.type = "confidence", main="FIR")+
+#scale_colour_manual(values=cols01)
+#grid.arrange(p1a, p2a, p3a, ncol=3)
+#pa <- arrangeGrob(p1a, p2a, p3a, ncol=3)
+
+#save plot to pdf
+
+#ggsave("FIGURES/PAM_CL_01a.pdf", pa, width = 14, height = 8)
+
+#save plot to png
+
+#ggsave("FIGURES/PAM_CL_01a.png", pa, width = 14, height = 8)
+
