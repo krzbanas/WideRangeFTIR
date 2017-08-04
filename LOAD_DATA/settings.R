@@ -1,7 +1,8 @@
 ## load libraries
 library(hyperSpec)
-
-
+library(factoextra) #eclust
+library(gridExtra) #grid.arrange
+library(cluster) #silhouette
 
 ## ggplot2 theme modifications
 theme_new <- theme_set(theme_bw())
