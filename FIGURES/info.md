@@ -1,1 +1,4 @@
-#this is folder to keep all final figures
+# Info
+
+This is folder to keep all final figures.
+
