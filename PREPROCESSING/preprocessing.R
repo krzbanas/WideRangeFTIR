@@ -36,8 +36,8 @@ fullspec02
 
 ## Baseline corrected and normalized spectra:
   
-- NIR1n (4000-7600 cm^-1^)
-- MIR1n (400-4000 cm^-1^)
-- FIR1n (50-670 cm^-1^)
-- fullspec02 (50-7600 cm^-1^)
+#- NIR1n (4000-7600 cm^-1^)
+#- MIR1n (400-4000 cm^-1^)
+#- FIR1n (50-670 cm^-1^)
+#- fullspec02 (50-7600 cm^-1^)
 

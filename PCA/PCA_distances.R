@@ -1,5 +1,11 @@
 #PCA - distances from centroids
 
+library(dplyr)#select mutate summarise
+library(tidyr)#gather
+
+#loading dplyr earlier causes collision in collapse function from hyperSpec
+
+
 # function to calculate Euclidean distance
 # points1 is the data matrix with points as rows and dimensions as columns
 # points2 is the matrix of centers (points as rows again)
@@ -35,8 +41,14 @@ distances2minNIR<-distances1minNIR[,c(1,6)] %>% gather(key, value, -NIR1n.explos
 distances2minNIR[,2]<-c("NIR")
 colnames(distances2minNIR)<-c("Explosive","Range","Distance")
 
-ggplot(distances2minNIR, aes(x=Explosive, y=Distance, colour=Explosive))+geom_point(size=4)+
+gdnir<-ggplot(distances2minNIR, aes(x=Explosive, y=Distance, colour=Explosive))+geom_point(size=4)+
   scale_colour_manual(values = cols01, name="Explosive")
+gdnir
+#save plot to pdf
+ggsave("FIGURES/PCA_distances_nir.pdf", gdnir, width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_distances_nir.png", gdnir, width = 14, height = 8)
+
 meansNIR<-distances2minNIR %>%
   group_by(Explosive)%>% 
   summarise(MeanDist = mean(Distance, na.rm=TRUE))
@@ -66,8 +78,15 @@ distances2minMIR<-distances1minMIR[,c(1,6)] %>% gather(key, value, -MIR1n.explos
 distances2minMIR[,2]<-c("MIR")
 colnames(distances2minMIR)<-c("Explosive","Range","Distance")
 
-ggplot(distances2minMIR, aes(x=Explosive, y=Distance, colour=Explosive))+geom_point(size=4)+
+gdmir<-ggplot(distances2minMIR, aes(x=Explosive, y=Distance, colour=Explosive))+geom_point(size=4)+
   scale_colour_manual(values = cols01, name="Explosive")
+gdmir
+#save plot to pdf
+ggsave("FIGURES/PCA_distances_mir.pdf", gdmir, width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_distances_mir.png", gdmir, width = 14, height = 8)
+
+
 meansMIR<-distances2minMIR %>%
   group_by(Explosive)%>% 
   summarise(MeanDist = mean(Distance, na.rm=TRUE))
@@ -97,8 +116,14 @@ distances2minFIR<-distances1minFIR[,c(1,6)] %>% gather(key, value, -FIR1n.explos
 distances2minFIR[,2]<-c("FIR")
 colnames(distances2minFIR)<-c("Explosive","Range","Distance")
 
-ggplot(distances2minFIR, aes(x=Explosive, y=Distance, colour=Explosive))+geom_point(size=4)+
+gdfir<-ggplot(distances2minFIR, aes(x=Explosive, y=Distance, colour=Explosive))+geom_point(size=4)+
   scale_colour_manual(values = cols01, name="Explosive")
+gdfir
+#save plot to pdf
+ggsave("FIGURES/PCA_distances_fir.pdf", gdfir, width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_distances_fir.png", gdfir, width = 14, height = 8)
+
 meansFIR<-distances2minFIR %>%
   group_by(Explosive)%>% 
   summarise(MeanDist = mean(Distance, na.rm=TRUE))
@@ -113,8 +138,11 @@ meansFIR
 means<-rbind(meansNIR,meansMIR, meansFIR)
 means[,3]<-rep(c("NIR","MIR","FIR"), each=4)
 colnames(means)<-c("Explosive","Distance","Range")
-ggplot(means, aes(x=Range, y=Distance, colour=Explosive))+geom_point(size=4)+
+gdall<-ggplot(means, aes(x=Range, y=Distance, colour=Explosive))+geom_point(size=4)+
   scale_colour_manual(values = cols01, name="Explosive")
+gdall
 
-
-
+#save plot to pdf
+ggsave("FIGURES/PCA_distances_all.pdf", gdall, width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_distances_all.png", gdall, width = 14, height = 8)

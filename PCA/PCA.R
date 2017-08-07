@@ -1,6 +1,5 @@
 #PCA
 
-
 ## NIR region
 
 pcaNIR <- prcomp (~ spc, data = NIR1n, center = FALSE)
@@ -63,6 +62,9 @@ abline(h=1, col="red", lwd=2, lty=2)
 dev.copy(png,"FIGURES/PCA_NIR_Scree_03.png",width = 1400, height = 800)
 dev.off()
 
+
+
+
 ## MIR region
 
 
@@ -80,6 +82,10 @@ g4<-ggplot(dataMIR,
 g34<-grid.arrange(g3, g4, ncol=2)
 g34
 
+#save plot to pdf
+ggsave("FIGURES/PCA_MIR_SC_01.pdf", g34, width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_MIR_SC_01.png", g34, width = 14, height = 8)
 
 
 ##Screeplot for MIR region
@@ -94,12 +100,18 @@ barplot(eigenvalues.mir[, 2], names.arg=1:nrow(eigenvalues.mir),
 lines(x = 1:nrow(eigenvalues.mir), eigenvalues.mir[, 2], 
       type="b", pch=19, col = "red")
 
+dev.copy(png,"FIGURES/PCA_MIR_Scree_01.png",width = 1400, height = 800)
+dev.off()
+
+
 ##Screeplot for MIR region - factoextra version
 res.pca.mir <- PCA(MIR1n[[]], graph = FALSE)
 eigen.mir <- get_eig(res.pca.mir)
 fviz_screeplot(res.pca.mir, choice="variance", ncp=10, addlabels= TRUE)
-fviz_screeplot(res.pca.mir, choice="eigenvalue", ncp=10, addlabels= TRUE)
-fviz_eig(res.pca.mir, addlabels = TRUE, ylim = c(0, 85))
+#save plot to pdf
+dev.copy2pdf(file="FIGURES/PCA_MIR_Scree_02.pdf", width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_MIR_Scree_02.png")
 
 
 ## Screeplot for MIR region - qcc package version Kaiser's criterion
@@ -108,6 +120,11 @@ res.pca.mir.2 <- prcomp (MIR1n[[]]) # PCA
 variances.mir <- res.pca.mir.2$sdev^2  # variances
 pareto.chart (variances.mir[c(1:10)], ylab="Variances", col=rainbow(length(variances.mir)))  # plot pareto chart
 abline(h=1, col="red", lwd=2, lty=2)
+dev.copy(png,"FIGURES/PCA_MIR_Scree_03.png",width = 1400, height = 800)
+dev.off()
+
+
+
 
 
 ##FIR region
@@ -125,6 +142,13 @@ g6<-ggplot(dataFIR,
   scale_colour_manual(values = cols01, name="Explosive")
 g56<-grid.arrange(g5, g6, ncol=2)
 g56
+#save plot to pdf
+ggsave("FIGURES/PCA_FIR_SC_01.pdf", g56, width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_FIR_SC_01.png", g56, width = 14, height = 8)
+
+
+
 
 ##Screeplot for FIR region
 res.pca.fir <- PCA(FIR1n[[]], graph = FALSE)
@@ -137,14 +161,18 @@ barplot(eigenvalues.fir[, 2], names.arg=1:nrow(eigenvalues.fir),
 # Add connected line segments to the plot
 lines(x = 1:nrow(eigenvalues.fir), eigenvalues.fir[, 2], 
       type="b", pch=19, col = "red")
+dev.copy(png,"FIGURES/PCA_FIR_Scree_01.png",width = 1400, height = 800)
+dev.off()
 
 
 ##Screeplot for FIR region - factoextra version
 res.pca.fir <- PCA(FIR1n[[]], graph = FALSE)
 eigen.fir <- get_eig(res.pca.fir)
 fviz_screeplot(res.pca.fir, choice="variance", ncp=10, addlabels= TRUE)
-fviz_screeplot(res.pca.fir, choice="eigenvalue", ncp=10, addlabels= TRUE)
-fviz_eig(res.pca.fir, addlabels = TRUE, ylim = c(0, 85))
+#save plot to pdf
+dev.copy2pdf(file="FIGURES/PCA_FIR_Scree_02.pdf", width = 14, height = 8)
+#save plot to png
+ggsave("FIGURES/PCA_FIR_Scree_02.png")
 
 
 ## Screeplot for FIR region - qcc package version Kaiser's criterion
@@ -153,3 +181,5 @@ res.pca.fir.2 <- prcomp (FIR1n[[]]) # PCA
 variances.fir <- res.pca.fir.2$sdev^2  # variances
 pareto.chart (variances.fir[c(1:10)], ylab="Variances", col=rainbow(length(variances.fir)))  # plot pareto chart
 abline(h=1, col="red", lwd=2, lty=2)
+dev.copy(png,"FIGURES/PCA_FIR_Scree_03.png",width = 1400, height = 800)
+dev.off()

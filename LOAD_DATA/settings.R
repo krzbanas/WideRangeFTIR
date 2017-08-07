@@ -1,12 +1,14 @@
 ## load libraries
+
 library(hyperSpec)
 library(factoextra) #eclust
 library(gridExtra) #grid.arrange
 library(cluster) #silhouette
 library(FactoMineR) #function PCA (capital letters)
 library(qcc) #pareto.chart
-library(dplyr)#select mutate summarise
-library(tidyr)#gather
+
+
+setwd("D:/GITHUB_REPOS/WideRangeFTIR")
 
 ## ggplot2 theme modifications
 theme_new <- theme_set(theme_bw())
